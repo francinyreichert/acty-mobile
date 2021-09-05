@@ -1,0 +1,7 @@
+{
+  "name": "acty-mobile",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

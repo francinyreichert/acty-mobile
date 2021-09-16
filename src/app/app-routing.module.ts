@@ -20,9 +20,13 @@ const routes: Routes = [
     loadChildren: () => import('./registration/registration.module').then( m => m.RegistrationPageModule)
   },
   {
-    path: 'forgot-password',
-    loadChildren: () => import('./forgot-password/forgot-password.module').then( m => m.ForgotPasswordPageModule)
+    path: 'feed',
+    loadChildren: () => import('./visualization/visualization.module').then( m => m.VisualizationPageModule)
   },
+  {
+    path: 'form',
+    loadChildren: () => import('./form/form.module').then( m => m.FormPageModule)
+  }
 ];
 
 @NgModule({

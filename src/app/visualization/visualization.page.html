@@ -1,0 +1,16 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Ações</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-col>
+    <ion-button [routerLink]="['/form']" expand="block" color="secondary">Adicione nova ação</ion-button>
+    <br>
+    <ion-router-link [routerLink]="['/home']" class="underline" color="light">Sair</ion-router-link>
+  </ion-col>
+</ion-content>

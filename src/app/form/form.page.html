@@ -3,32 +3,41 @@
         <ion-buttons slot="start">
         <ion-back-button></ion-back-button>
         </ion-buttons>
-        <ion-title>Criar nova ação</ion-title>
+        <ion-title>Criar</ion-title>
     </ion-toolbar>
 </ion-header>
   
 <ion-content>
     <form>
         <ion-item lines="full">
-            <ion-label position="floating">Título</ion-label>
-            <ion-input type="text" required></ion-input>
+            <ion-label for="title">Título</ion-label>
+            <ion-input type="text" class="form-control" id="title"
+                    required
+                    [(ngModel)]="title" name="txtitle"
+                    #txtitle="ngModel"></ion-input>
+            <div [hidden]="txtitle.valid || txtitle.pristine"
+                class="alert alert-danger">
+                Título é obrigatório
+            </div>
         </ion-item>
 
         <ion-item lines="full">
-            <ion-label position="floating">Descrição</ion-label>
-            <ion-input type="text" required></ion-input>
+            <ion-label for="description">Descrição</ion-label>
+            <ion-input type="text" class="form-control" id="texto"
+                    [(ngModel)]="texto" name="texto"></ion-input>
         </ion-item>
 
         <ion-item lines="full">
-            <ion-label position="floating">Situação</ion-label>
-            <ion-input type="text" required></ion-input>
+            <ion-label for="status">Situação</ion-label>
+            <ion-select id="status"
+                    required
+                    [(ngModel)]="status" name="status"
+                    #power="ngModel">
+                <ion-select-option *ngFor="let item of situations" [value]="item.val">{{item.desc}}</ion-select-option>
+            </ion-select>
         </ion-item>
 
-        <ion-row>
-            <ion-col>
-                <ion-button [routerLink]="['/feed']" color="secondary" expand="block">Adicionar</ion-button>
-            </ion-col>
-        </ion-row>
+        <ion-button type="submit"  color="secondary" (click)="save()">Adicionar</ion-button>
     </form>
 </ion-content>
   

@@ -31,7 +31,7 @@ export class FormPage implements OnInit {
     this.status = null;
   }
 
-  salvar(): void {
+  save(): void {
     this.serv.save(this.title, this.description, parseInt('' + this.status, 10));
     this.reset();
     this.router.navigate(['home']);

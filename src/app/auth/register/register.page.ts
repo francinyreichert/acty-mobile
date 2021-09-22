@@ -11,7 +11,6 @@ import { User } from 'src/model/structures';
 })
 export class RegisterPage implements OnInit {
   name: string;
-  lastName: string;
   email: string;
   password: string;
 
@@ -23,7 +22,6 @@ export class RegisterPage implements OnInit {
   register() {
     const usr = new User();
     usr.name      = this.name;
-    usr.lastName  = this.lastName;
     usr.email     = this.email;
     usr.password  = this.password;
 

@@ -23,7 +23,6 @@ export class AuthService {
       this.user.uid = ref.result.user.uid;
       this.user.name = user.name;
       this.user.email = user.email;
-      this.user.lastName = user.lastName;
     //   this.usuario.locations = [];
       this.saveUserData(this.user).then(_ => {
         console.log(_.key + ' gravado');

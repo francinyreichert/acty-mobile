@@ -32,9 +32,9 @@ export class FormPage implements OnInit {
   }
 
   save(): void {
-    //this.serv.save(this.title, this.description, parseInt('' + this.status, 10));
+    this.serv.save(this.title, this.description, parseInt('' + this.status, 10));
     this.reset();
-    this.router.navigate(['home']);
+    this.router.navigate(['feed']);
   }
 
 }

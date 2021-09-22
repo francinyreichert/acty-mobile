@@ -22,7 +22,6 @@
     <ion-row>
       <ion-col>
         <ion-button 
-          [routerLink]="['/feed']"
           color="secondary" 
           expand="block" 
           (click)="login()">
@@ -30,7 +29,7 @@
         </ion-button>
         <ion-label position="floating">Não possui uma conta ainda?</ion-label>
         <br>
-        <ion-router-link [routerLink]="['/registration']" class="underline" color="light">Crie uma conta</ion-router-link>
+        <ion-router-link [routerLink]="['/register']" class="underline" color="light">Crie uma conta</ion-router-link>
       </ion-col>
     </ion-row>
   </form>

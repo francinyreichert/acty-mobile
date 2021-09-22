@@ -11,8 +11,8 @@ export class AppComponent {
   user: User;
 
   constructor(private serv: ActionsService) {
-    this.serv.getUser().subscribe(res => {
-      this.user = res;
-    });
+   // this.serv.getUser().subscribe(res => {
+   //   this.user = res;
+   // });
   }
 }

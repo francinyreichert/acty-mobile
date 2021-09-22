@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/auth.service';
+import { User } from 'src/model/structures';
 
 
 @Component({
@@ -7,19 +10,25 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./register.page.scss'],
 })
 export class RegisterPage implements OnInit {
-  name: string = "";
-  email: string = "";
-  password: string = "";
-  confirm_password: string = ""; 
+  name: string;
+  lastName: string;
+  email: string;
+  password: string;
 
-  constructor() { }
+  constructor(private authSrv: AuthService, private router: Router) { }
 
   ngOnInit() {
   }
 
-  onLogin() {
-    alert(
-     this.name + ', ' + this.email + ', ' + this.password + ', ' + this.confirm_password
-    )
+  register() {
+    const usr = new User();
+    usr.name      = this.name;
+    usr.lastName  = this.lastName;
+    usr.email     = this.email;
+    usr.password  = this.password;
+
+    this.authSrv.registerUser(usr).then (res => {
+      this.router.navigate(['login']);
+    });
   }
 }

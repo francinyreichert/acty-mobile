@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from  "@angular/router";
-//import { AuthService } from '../auth.service';
+import { AuthService } from 'src/app/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -11,14 +11,21 @@ export class LoginPage implements OnInit {
   email: string = "";
   password: string = "";
 
-  constructor() { }
+  constructor(private authSrv: AuthService, private router: Router) { }
 
   ngOnInit() {
   }
 
-  onLogin() {
-    alert(
-     this.email + ', ' + this.password
-    )
+  login() {
+    try {
+      // const t = this;
+      this.authSrv.login(this.email, this.password, this.router,
+        function(user, nav) {
+          console.log('Entrou como ' + user.name);
+          nav.navigate(['feed']);
+        });
+    } catch (e) {
+      console.log('ERRO LOGIN COMP = ' + JSON.stringify(e));
+    }
   }
 }

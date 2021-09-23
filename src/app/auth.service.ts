@@ -12,19 +12,16 @@ export class AuthService {
   usrListRef = this.db.list<User>('users-list');
   user: User;
 
-  constructor(private fbAuth: AngularFireAuth,
-              private db: AngularFireDatabase) {
+  constructor(private fbAuth: AngularFireAuth, private db: AngularFireDatabase) {
   }
 
   async registerUser(user: User) {
     this.register(user).then(ref => {
-      console.log('*** registrado ' + ref.result.user.uid);
-      // associando dados com usuário do FB
       this.user = new User();
       this.user.uid = ref.result.user.uid;
       this.user.name = user.name;
       this.user.email = user.email;
-    //   this.usuario.locations = [];
+
       this.saveUserData(this.user).then(_ => {
         console.log(_.key + ' gravado');
         this.user.did = _.key;
@@ -33,7 +30,6 @@ export class AuthService {
     });
   }
 
-  // registrando usuário no FB
   private async register(user: User) {
     try {
       return  {

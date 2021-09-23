@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { User } from 'src/model/user';
-import { ActionsService } from './actions.service';
 
 @Component({
   selector: 'app-root',
@@ -10,9 +9,7 @@ import { ActionsService } from './actions.service';
 export class AppComponent {
   user: User;
 
-  constructor(private serv: ActionsService) {
-   // this.serv.getUser().subscribe(res => {
-   //   this.user = res;
-   // });
+  constructor() {
+
   }
 }

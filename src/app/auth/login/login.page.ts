@@ -18,7 +18,6 @@ export class LoginPage implements OnInit {
 
   login() {
     try {
-      // const t = this;
       this.authSrv.login(this.email, this.password, this.router,
         function(user, nav) {
           console.log('Entrou como ' + user.name);

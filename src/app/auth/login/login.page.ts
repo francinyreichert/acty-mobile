@@ -19,8 +19,7 @@ export class LoginPage implements OnInit {
   login() {
     try {
       this.authSrv.login(this.email, this.password, this.router,
-        function(user, nav) {
-          console.log('Entrou como ' + user.name);
+        function(nav) {
           nav.navigate(['feed']);
         });
     } catch (e) {

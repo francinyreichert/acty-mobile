@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFireDatabase } from '@angular/fire/database';
-import { User, UserResponse } from 'src/model/structures';
+import { User, UserResponse } from 'src/model/user';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class AuthService {
 
   usrListRef = this.db.list<User>('users-list');

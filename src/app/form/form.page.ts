@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActionsService } from '../actions.service';
 import { Router } from '@angular/router';
+import { Action } from 'src/model/action';
 
 @Component({
   selector: 'app-form',
@@ -10,6 +11,7 @@ import { Router } from '@angular/router';
 
 export class FormPage implements OnInit {
 
+  newAction: Action;
   title: string;
   description: string;
   status: number;
@@ -32,7 +34,8 @@ export class FormPage implements OnInit {
   }
 
   save(): void {
-    this.serv.save(this.title, this.description, parseInt('' + this.status, 10));
+    this.newAction = new Action(this.title, this.description, parseInt('' + this.status, 10));
+    this.serv.createAction(this.newAction);
     this.reset();
     this.router.navigate(['feed']);
   }

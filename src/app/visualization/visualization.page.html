@@ -10,7 +10,17 @@
 <ion-content>
   <ion-col>
     <ion-button [routerLink]="['/form']" expand="block" color="secondary">Adicione nova ação</ion-button>
-    <br>
+
+      <ion-card class="card" *ngFor="let item of actions">
+        <ion-card-header>
+          <ion-card-title>{{item.title}}</ion-card-title>
+          <ion-card-subtitle>{{item.modification | date}}</ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content>
+          {{item.description}}
+        </ion-card-content>
+      </ion-card>
+
     <ion-router-link [routerLink]="['/home']" class="underline" color="light">Sair</ion-router-link>
   </ion-col>
 </ion-content>
@@ -20,4 +30,7 @@
     text-decoration: underline;
   }
 
+  .card {
+    background: var(--ion-color-primary-contrast);
+  }
 </style>

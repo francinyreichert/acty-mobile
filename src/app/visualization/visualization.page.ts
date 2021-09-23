@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireList } from '@angular/fire/database';
+import { Action } from 'src/model/action';
+import { ActionsService } from '../actions.service';
+
 
 @Component({
   selector: 'app-visualization',
@@ -6,9 +10,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./visualization.page.scss'],
 })
 export class VisualizationPage implements OnInit {
+  actions: Action[]; 
 
-  constructor() { }
+  constructor(private serv: ActionsService) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.actions = this.serv.getAll();
+  }
 
 }

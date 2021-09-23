@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import { User } from 'src/model/structures';
-import { Observable, of } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { Action } from 'src/model/action';
+import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 
 @Injectable({
   providedIn: 'root'
@@ -9,55 +8,33 @@ import { HttpClient } from '@angular/common/http';
 
 export class ActionsService {
 
-  url = 'http://localhost:3000/';
-  user: User;
+  actionListRef = this.db.list<Action>('actions-list');
+  action: Action;
+  actions: Action[];
 
-  constructor(private http: HttpClient) {
-    this.getUser().subscribe(res => {
-      this.user = new User();
-      this.user.email = res.email;
-      for (let index = 0; index < res.actions.length; index++) {
-        const element = res.actions[index];
-        const n = this.user.createAction(element.title, element.description, element.status);
-        n.modification = element.modification;
-      }
-      this.user.lastId = res.lastId;
+  constructor(private db: AngularFireDatabase) { 
+    this.actions = [];
+  }
+
+  createAction(action : Action) {
+    this.action = action;
+    this.saveActionData(this.action).then(_ => {
+      this.action.id = _.key;
+      this.actionListRef.update(_.key, this.action);
+      this.actions.push(this.action);
     });
   }
 
-  mock(): void {
-    this.user = new User();
-    this.user.email = 'arthur@email.com';
-    this.user.addAction(1, 'Food donation!');
-    this.user.addAction(2, 'Christmas: toy collection for poor children');
-    this.user.addAction(3, 'Clothes donation');
-    this.user.deleteAction(3);
+  private saveActionData(action: Action) {
+    return this.actionListRef.push(action);
   }
 
-  getUser(): Observable<User> {
-    if (this.user) {
-      return of(this.user);
-    }
-    return this.http.get<User>(this.url + 'user');
+  getAll(): Action[] {
+    return this.actions;
   }
 
-  sendData(): void {
-    this.http.post(this.url + 'user', this.user).subscribe(res => {
-      console.log(res);
-    });
+  delete(id: string) {
+    this.actionListRef.remove(id);
   }
-
-  save(title, description, status): void {
-    this.user.createAction(title, description, status);
-  }
-
-  delete(item): void {
-    this.user.remove(item);
-  }
-
-  recover(item): void {
-    this.user.restore(item);
-  }
-
 
 }

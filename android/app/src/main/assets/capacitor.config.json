@@ -1,0 +1,6 @@
+{
+	"appId": "io.ionic.starter",
+	"appName": "acty-mobile",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}

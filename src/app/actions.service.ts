@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Action } from 'src/model/action';
-import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
+import { AngularFireDatabase } from '@angular/fire/database';
 
 @Injectable({
   providedIn: 'root'
@@ -21,11 +21,11 @@ export class ActionsService {
     this.saveActionData(this.action).then(_ => {
       this.action.id = _.key;
       this.actionListRef.update(_.key, this.action);
-      this.actions.push(this.action);
     });
   }
 
   private saveActionData(action: Action) {
+    this.actions.push(action);
     return this.actionListRef.push(action);
   }
 

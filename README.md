@@ -23,6 +23,6 @@
  <code>npm install </code>
 
 <strong>Rode o servidor</strong><br>
-  <code>npm start</code>
+  <code>npm start</code> ou <code>ionic serve -l</code>
 
 <strong>Feito isso, abra o seu navegador e acesse: https://localhost:8100/</strong>
